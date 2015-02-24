@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Movie.create(title: "Top Hat", year: 1935)
+Movie.create(title: "V for Vendetta", year: 2005)
+Movie.create(title: "Garden State", year: 2004 )
+
+Actor.create(name: "Fred Astaire")
+Actor.create(name: "Hugo Weaving",)
+Actor.create(name: "Natalie Portman",)
+Actor.create(name: "Zach Braff",)
