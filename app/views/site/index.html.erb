@@ -1,8 +1,16 @@
 <h1>Actors and Movies</h1>
 
+<h2>Welcome <%= @user.username %></h2>
+
 <p>
   Browse by
   <%= link_to "Actors", actors_path %>
   or
   <%= link_to "Movies", movies_path %>
 </p>
+
+<%= form_tag(logout_path, method: :delete) do %>
+
+  <%= submit_tag("Logout", class: "btn btn-primary") %>
+
+<% end %>

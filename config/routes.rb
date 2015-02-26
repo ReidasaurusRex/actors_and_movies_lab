@@ -1,15 +1,31 @@
 Rails.application.routes.draw do
-
   resources :movies
   resources :actors
 
-  post '/movies/:id/actors/new' => 'movies#add_actor', as: :add_actor
-  delete 'movies/:id/actors/:actor_id' => 'movies#remove_actor', as: :remove_actor
+  post '/movies/:id/actors/new', to: 'movies#add_actor', as: :add_actor
+  delete 'movies/:id/actors/:actor_id', to: 'movies#remove_actor', as: :remove_actor
 
-  post '/actors/:id/movies/new' => 'actors#add_movie', as: :add_movie
-  delete '/actors/:id/movies/:movie_id' => 'actors#remove_movie', as: :remove_movie
+  post '/actors/:id/movies/new', to: 'actors#add_movie', as: :add_movie
+  delete '/actors/:id/movies/:movie_id', to: 'actors#remove_movie', as: :remove_movie
 
-  root 'site#index'
+  post '/actors/:actor_id/new', to: 'comments#create', as: :actor_comments
+  post'/movies/:movie_id/new', to: 'comments#create', as: :movie_comments
+
+  delete '/actors/:actor_id/delete', to: 'comments#delete', as: :actor_comment_delete
+  delete '/movies/:movie_id/delete', to: 'comments#delete', as: :movie_comment_delete
+
+  root 'site#index', as: :home
+
+
+  get '/signup', to: 'access#signup', as: :signup
+  post '/signup', to: 'access#create', as: :user_create 
+
+  get '/login', to: 'access#login', as: :login
+  post '/login', to: 'access#attempt_login'
+
+  get '/home', to: 'site#index'
+
+  delete '/logout', to: 'access#logout', as: :logout
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

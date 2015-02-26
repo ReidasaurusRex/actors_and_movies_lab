@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:edit, :show, :destroy, :add_actor, :remove_actor]
-  
+  before_action :check_logged_in
+
   def index
     @movies = Movie.all
   end

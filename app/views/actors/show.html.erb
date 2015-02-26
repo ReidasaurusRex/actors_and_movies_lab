@@ -22,4 +22,32 @@
 <%= button_to "Delete", actor_path(@actor), :method => :delete %>
 <br><br>
 
+  <h2>Comments</h2>
+  <ul>
+    <% @actor.comments.each do |comment| %>
+    <li>
+      <%= comment.content %>
+      <% if comment.user_id == session[:user_id] %>
+        <p>
+        <%= button_to "Delete", actor_comment_delete_path([@actor, comment]), :method => :delete %>
+        </p>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+  <h2>New Comment</h2>
+  <%= form_for [@actor, Comment.new] do |f| %>
+    <ol>
+      <li>
+        <%= f.label :content %>
+        <%= f.text_area :content, :rows => 5 %>
+      </li>
+      <li><%= submit_tag "Add comment" %></li>
+    </ol>
+  <% end %>
+
+
+
+<br><br>
+
 <%= link_to "Back to actors", actors_path %>

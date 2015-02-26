@@ -1,12 +1,12 @@
 class ActorsController < ApplicationController
   before_action :find_actor, only: [:edit, :show, :update, :destroy, :add_movie, :remove_movie]
+  before_action :check_logged_in
 
   def index
     @actors = Actor.all
   end
 
   def create
-    binding.pry
     Actor.create actor_params
     redirect_to actors_path
   end
